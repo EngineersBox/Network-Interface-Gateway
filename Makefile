@@ -72,6 +72,6 @@ check:
 run:
 	@echo '$(CYAN)>> $(GREEN) Running new build $(WHITE)[$(RED)$(BOLD)$(OUT)$(RESET)$(WHITE)]'
 	@echo '--------------------------------'
-	@cargo run --color always
+	@cargo run --color always $(ARGS)
 	@echo '--------------------------------'
 	@echo '$(CYAN)>> $(GREEN) Stopped running$(RESET)'

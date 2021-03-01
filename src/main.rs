@@ -19,7 +19,7 @@ use pnet::datalink::Channel::Ethernet;
 use pnet::packet::{Packet, MutablePacket};
 use pnet::packet::ethernet::{EthernetPacket, MutableEthernetPacket};
 use etherparse::{SlicedPacket, TransportSlice};
-use std::fmt;
+use std::{fmt, env};
 
 fn initialize_logging() ->  slog::Logger {
     let log_path: &str = "logs/";
@@ -60,6 +60,7 @@ lazy_static! {
     static ref LOGGER: Logger = initialize_logging();
 }
 
+#[derive(Debug)]
 enum NetInterface {
     WIFI,
     BLUETOOTHPAN,
@@ -92,8 +93,14 @@ impl fmt::Display for NetInterface {
 }
 
 fn main() {
-    let interface_name: NetInterface = NetInterface::WIFI;
-    let interface_names_match = |iface: &NetworkInterface| iface.name == interface_name.to_string();
+    let interface_name: String = if env::args().len() > 1 {
+        info!(LOGGER, "Interface provided, binding to [{}]", env::args().nth(1).unwrap());
+        env::args().nth(1).unwrap()
+    } else {
+        info!(LOGGER, "Interface name not provided as an argument, defaulting to [{:?} <=> {}]", NetInterface::WIFI, NetInterface::WIFI.to_string());
+        NetInterface::WIFI.to_string()
+    };
+    let interface_names_match = |iface: &NetworkInterface| iface.name == interface_name;
 
     let interfaces: Vec<NetworkInterface> = datalink::interfaces();
     let interface: NetworkInterface = interfaces.into_iter().filter(interface_names_match).next().unwrap();
