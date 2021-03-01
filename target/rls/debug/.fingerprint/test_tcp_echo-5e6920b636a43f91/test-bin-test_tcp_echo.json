@@ -1,0 +1,1 @@
+{"rustc":17138091804324965747,"features":"[]","target":6960849437262502967,"profile":8341259748240011191,"path":1036222786711178230,"deps":[[7797167685908580951,"pnet",false,2120984105144286762]],"local":[{"CheckDepInfo":{"dep_info":"debug/.fingerprint/test_tcp_echo-5e6920b636a43f91/dep-test-bin-test_tcp_echo"}}],"rustflags":[],"metadata":8306355589018275440,"config":0}

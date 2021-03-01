@@ -1,0 +1,18 @@
+[package]
+name = "network_interface_echo"
+version = "0.1.0"
+
+authors = ["u6940136@anu.edu.au <toastcraft.info@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+pnet = "0.27.2"
+etherparse = "0.9.0"
+slog = "2.7.0"
+slog-async = "2.6.0"
+slog-term = "2.8.0"
+slog-json = "2.3.0"
+lazy_static = "1.4.0"
+chrono ="0.4.19"
